@@ -41,7 +41,18 @@
     "react/prop-types": 0,
     "no-shadow": "off",
     "import/no-absolute-path": [0, { "esmodule": false, "commonjs": false, "amd": false }],
-    "@typescript-eslint/no-shadow": ["error"]
+    "@typescript-eslint/no-shadow": ["error"],
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          ["external", "builtin"],
+          "internal",
+          ["parent", "sibling", "index"]
+        ],
+        "newlines-between": "always"
+      }
+    ]
   },
   "settings": {
     "import/resolver": {
