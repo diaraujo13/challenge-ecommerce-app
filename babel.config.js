@@ -13,7 +13,7 @@ module.exports = function (api) {
             screens: './src/screens',
             redux: './src/redux',
             hooks: './src/hooks',
-            config: './src/config',
+            common: './src/common',
             assets: './src/assets',
           },
         },

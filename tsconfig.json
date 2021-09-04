@@ -4,12 +4,16 @@
     "strict": true,
     "baseUrl": "./src", 
     "paths": { 
-      "components": ["./src/components"],
+      "components": ["./src/components/"],
       "screens": ["./src/screens"],
       "redux": ["./src/redux"],
       "hooks": ["./src/hooks"],
-      "config": ["./src/config"],
+      "common": ["./src/common"],
       "assets": ["./src/assets"],
   }
-  }
+  },
+  "include": ["./src"],
+  "exclude": [
+    "node_modules", "babel.config.js", "metro.config.js", "jest.config.js"
+  ]
 }
