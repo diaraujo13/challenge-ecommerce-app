@@ -8,10 +8,9 @@ module.exports = function (api) {
         'module-resolver',
         {
           alias: {
-            src: './src',
+            '~': './src',
             components: './src/components',
             screens: './src/screens',
-            redux: './src/redux',
             hooks: './src/hooks',
             common: './src/common',
             assets: './src/assets',

@@ -1,20 +1,21 @@
 {
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
-    "strict": true,
-    "baseUrl": ".", 
+    "strict": false,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "baseUrl": "./src", 
     "paths": { 
-      "*": ["src/*"],
-      "components/*": ["./src/components//*"],
-      "screens/*": ["./src/screens/*"],
-      "redux/*": ["./src/redux/*"],
-      "hooks/*": ["./src/hooks/*"],
-      "common/*": ["./src/common/*"],
-      "assets/*": ["./src/assets/*"],
+      "src": ["./src/*"],
+      "components": ["./src/components/*"],
+      "screens": ["./src/screens/*"],
+      "hooks": ["./src/hooks/*"],
+      "common": ["./src/common/*"],
+      "assets": ["./src/assets/*"],
   }
   },
-  "include": ["./src"],
+  "include": ["App.tsx", "./src", "babel.config.js",  ".eslintrc.js", "metro.config.js"],
   "exclude": [
-    "node_modules", "babel.config.js", "metro.config.js", "jest.config.js"
+    "node_modules",  
   ]
 }
