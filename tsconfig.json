@@ -4,15 +4,19 @@
     "strict": false,
     "module": "esnext",
     "moduleResolution": "node",
-    "baseUrl": "./src", 
-    "paths": { 
-      "src": ["./src/*"],
-      "components": ["./src/components/*"],
-      "screens": ["./src/screens/*"],
-      "hooks": ["./src/hooks/*"],
-      "common": ["./src/common/*"],
-      "assets": ["./src/assets/*"],
-  }
+    "baseUrl": "src", 
+    "paths": {
+      "~/*": ["*"]
+    }
+    // "paths": { 
+    //     "src": ["./src/*"],
+    //     "~": ["./src/*"],
+    //     "components": ["./src/components/*"],
+    //     "screens": ["./src/screens/*"],
+    //     "hooks": ["./src/hooks/*"],
+    //     "common": ["./src/common/*"],
+    //     "assets": ["./src/assets/*"],
+    // }
   },
   "include": ["App.tsx", "./src", "babel.config.js",  ".eslintrc.js", "metro.config.js"],
   "exclude": [

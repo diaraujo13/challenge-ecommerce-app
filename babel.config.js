@@ -5,16 +5,10 @@ module.exports = function (api) {
     plugins: [
       'react-native-reanimated/plugin',
       [
-        'module-resolver',
+        'babel-plugin-root-import',
         {
-          alias: {
-            '~': './src',
-            components: './src/components',
-            screens: './src/screens',
-            hooks: './src/hooks',
-            common: './src/common',
-            assets: './src/assets',
-          },
+          rootPathPrefix: '~',
+          rootPathSuffix: 'src',
         },
       ],
     ],

@@ -46,6 +46,7 @@ module.exports = {
       0,
       { esmodule: false, commonjs: false, amd: false },
     ],
+    'no-param-reassign': 'warn',
     '@typescript-eslint/no-shadow': ['error'],
     'import/order': [
       'error',
@@ -62,6 +63,10 @@ module.exports = {
   settings: {
     'import/resolver': {
       typescript: {},
+      'babel-plugin-root-import': {
+        rootPathPrefix: '~',
+        rootPathSuffix: 'src',
+      },
     },
   },
 };
