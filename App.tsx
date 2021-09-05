@@ -1,9 +1,12 @@
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { NativeBaseProvider as ThemeProvider } from 'native-base';
-import { theme } from 'common';
-import { useCachedResources } from 'hooks';
-import Navigation from './src/routes';
+import { Provider as ReduxProvider } from 'react-redux';
+
+import { theme } from '~/common';
+import { useCachedResources } from '~/hooks';
+import { store } from '~/redux';
+import Navigation from '~/routes';
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
@@ -12,9 +15,11 @@ export default function App() {
     return null;
   }
   return (
-    <ThemeProvider theme={theme}>
-      <StatusBar />
-      <Navigation />
-    </ThemeProvider>
+    <ReduxProvider store={store}>
+      <ThemeProvider theme={theme}>
+        <StatusBar />
+        <Navigation />
+      </ThemeProvider>
+    </ReduxProvider>
   );
 }
