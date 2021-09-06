@@ -1,4 +1,3 @@
-// import liraries
 import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
 import {
@@ -12,6 +11,10 @@ import {
   MoonIcon,
   IconButton,
 } from 'native-base';
+import { AntDesign } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
+import { Container } from 'components';
+
 import {
   BackButton,
   Footer,
@@ -21,11 +24,8 @@ import {
   Main,
   RegisterButton,
   Section,
-  UserIcon,
-} from 'screens/Auth/styles';
-import { AntDesign } from '@expo/vector-icons';
-import { Container } from 'components';
-import { useNavigation } from '@react-navigation/native';
+  BaseIcon,
+} from '~/screens/Auth/styles';
 
 const Recovery = () => {
   const navigation = useNavigation();
@@ -40,7 +40,10 @@ const Recovery = () => {
         </Text>
       </Header>
       <Main>
-        <Input placeholder="E-mail" InputLeftElement={UserIcon} />
+        <Input
+          placeholder="E-mail"
+          InputLeftElement={<BaseIcon name="user" />}
+        />
         <Button style={{ marginTop: 40 }}>RECUPERAR CONTA</Button>
       </Main>
     </Container>
@@ -56,5 +59,4 @@ const styles = StyleSheet.create({
   },
 });
 
-// make this component available to the app
 export default Recovery;

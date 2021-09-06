@@ -48,7 +48,7 @@ export const BackButton = styled(AntDesign).attrs({
   width: 10%;
 `;
 
-export const BaseIcon = styled(AntDesign).attrs(props => ({
+export const BaseIcon = styled(AntDesign).attrs((props: { name: string }) => ({
   name: props.name,
 }))`
   margin-left: 20px;

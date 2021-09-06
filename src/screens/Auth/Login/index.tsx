@@ -9,7 +9,11 @@ import {
   Text,
   MoonIcon,
 } from 'native-base';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Platform } from 'react-native';
+import { AntDesign } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
+import { Container } from 'components';
+
 import {
   BaseIcon,
   Footer,
@@ -19,10 +23,7 @@ import {
   Main,
   RegisterButton,
   Section,
-} from 'screens/Auth/styles';
-import { Container } from 'components';
-import { AntDesign } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
+} from '~/screens/Auth/styles';
 
 const Login = () => {
   const navigation = useNavigation();
@@ -47,7 +48,7 @@ const Login = () => {
       </Section>
       <Section>
         <RegisterButton onPress={() => navigation.navigate('Register')}>
-          Não possui conta? Cadastre-se
+          <Text>Não possui conta? Cadastre-se</Text>
         </RegisterButton>
       </Section>
 
