@@ -23,8 +23,8 @@ const { actions, reducer } = createSlice({
   initialState,
   reducers: {
     selectProduct(state: IProductState, action: PayloadAction<number>) {
-      const { id } = state.items.find(el => el.id === action.payload);
-      state.selected = id;
+      // const { id } = state.items.find(el => el.id === action.payload);
+      state.selected = action.payload;
     },
   },
 });
