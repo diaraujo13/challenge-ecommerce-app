@@ -9,7 +9,7 @@ const ContainerWrapper = styled.View`
   padding: 10px;
 `;
 
-export default ({ children, style, ...props }) => (
+export default ({ children }) => (
   <>
     <SafeAreaView style={{ flex: 1 }}>
       <ContainerWrapper>

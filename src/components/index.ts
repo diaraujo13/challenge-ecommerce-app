@@ -1,2 +1,3 @@
-export { default as Container } from './Container';
-export { default as ProductRow } from './ProductRow';
+export { default as Container } from './layout/Container';
+export { default as ProductRow } from './layout/ProductRow';
+export { default as CartButton } from './widgets/CartButton';

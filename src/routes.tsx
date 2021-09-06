@@ -10,7 +10,7 @@ import {
   RootTabParamList,
   RootTabScreenProps,
 } from '../types';
-import CartButton from './components/CartButton';
+import { CartButton } from './components';
 
 import { ProductDetails, ProductList } from '~/screens/Product';
 import { LoginScreen, RegisterScreen } from '~/screens/Auth';
