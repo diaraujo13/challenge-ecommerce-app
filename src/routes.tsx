@@ -3,23 +3,21 @@ import { FontAwesome } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { ProductList } from 'screens/Product';
-import { LoginScreen, RegisterScreen } from 'screens/Auth';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+
 import {
   RootStackParamList,
   RootTabParamList,
   RootTabScreenProps,
 } from '../types';
 
+import { ProductDetails, ProductList } from '~/screens/Product';
+import { LoginScreen, RegisterScreen } from '~/screens/Auth';
+
 const Stack = createNativeStackNavigator();
 
 const AuthNavigator = () => (
   <Stack.Navigator>
-    <Stack.Screen
-      name="Login"
-      component={LoginScreen}
-      options={{ headerShown: false }}
-    />
     <Stack.Screen
       name="Register"
       component={RegisterScreen}
@@ -29,28 +27,37 @@ const AuthNavigator = () => (
 );
 
 const RootNavigator = () => (
-  <Stack.Navigator>
+  <Stack.Navigator
+    screenOptions={{
+      headerShown: false,
+    }}
+  >
+    <Stack.Screen name="ProductList" component={ProductList} />
     <Stack.Screen
-      name="ProductList"
-      component={ProductList}
-      options={{ headerShown: false }}
+      name="ProductDetails"
+      options={{
+        presentation: 'modal',
+      }}
+      component={ProductDetails}
     />
   </Stack.Navigator>
 );
 
-const BottomTab = createBottomTabNavigator<RootTabParamList>();
-
-function TabBarIcon(props: {
-  name: React.ComponentProps<typeof FontAwesome>['name'];
-  color: string;
-}) {
-  return <FontAwesome size={30} style={{ marginBottom: -3 }} {...props} />;
-}
+const Drawer = createDrawerNavigator();
+const Sidebar = () => (
+  <Drawer.Navigator>
+    <Drawer.Screen
+      key="_ListProducts"
+      name="Início"
+      component={RootNavigator}
+    />
+  </Drawer.Navigator>
+);
 
 export default function Navigation() {
   return (
     <NavigationContainer>
-      {true ? <AuthNavigator /> : <RootNavigator />}
+      {false ? <AuthNavigator /> : <Sidebar />}
     </NavigationContainer>
   );
 }
