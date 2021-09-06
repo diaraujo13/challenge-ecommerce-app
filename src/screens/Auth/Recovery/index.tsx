@@ -13,8 +13,8 @@ import {
 } from 'native-base';
 import { AntDesign } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
-import { Container } from 'components';
 
+import { Container } from '~/components';
 import {
   BackButton,
   Footer,

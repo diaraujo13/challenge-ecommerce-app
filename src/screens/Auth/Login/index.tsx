@@ -12,8 +12,8 @@ import {
 import { View, StyleSheet, Platform } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
-import { Container } from 'components';
 
+import { Container } from '~/components';
 import {
   BaseIcon,
   Footer,
@@ -31,7 +31,7 @@ const Login = () => {
   return (
     <Container style={styles.centered_container}>
       <Header>
-        <Logo source={require('assets/images/favicon.png')} />
+        <Logo source={require('~/assets/images/favicon.png')} />
         <Heading>My Ecommerce</Heading>
         <Text>Entre para continuar</Text>
       </Header>
