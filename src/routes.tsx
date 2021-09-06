@@ -10,6 +10,7 @@ import {
   RootTabParamList,
   RootTabScreenProps,
 } from '../types';
+import CartButton from './components/CartButton';
 
 import { ProductDetails, ProductList } from '~/screens/Product';
 import { LoginScreen, RegisterScreen } from '~/screens/Auth';
@@ -50,6 +51,9 @@ const Sidebar = () => (
       key="_ListProducts"
       name="Início"
       component={RootNavigator}
+      options={{
+        headerRight: () => <CartButton />,
+      }}
     />
   </Drawer.Navigator>
 );
