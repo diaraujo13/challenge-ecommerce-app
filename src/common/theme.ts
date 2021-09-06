@@ -17,6 +17,15 @@ const theme = extendTheme({
     initialColorMode: 'light',
   },
   components: {
+    Badge: {
+      defaultProps: {
+        colorScheme: 'primary',
+      },
+      baseStyle: {
+        backgroundColor: 'blue',
+        borderRadius: 30,
+      },
+    },
     Button: {
       baseStyle: {
         marginVertical: 10,
