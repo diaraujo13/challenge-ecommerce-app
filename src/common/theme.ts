@@ -1,4 +1,5 @@
 import { extendTheme } from 'native-base';
+import { Platform } from 'react-native';
 
 const theme = extendTheme({
   colors: {
@@ -36,6 +37,12 @@ const theme = extendTheme({
       },
     },
     Link: {},
+    Text: {
+      baseStyle: {},
+      defaultProps: {
+        fontSize: Platform.OS === 'ios' ? 'lg' : 'sm',
+      },
+    },
   },
 });
 
