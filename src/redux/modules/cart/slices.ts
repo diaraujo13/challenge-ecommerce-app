@@ -18,3 +18,5 @@ const { reducer, actions } = createSlice({
     },
   },
 });
+
+export { actions, reducer };
