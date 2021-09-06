@@ -37,8 +37,7 @@ module.exports = {
     'no-use-before-define': 'off',
     'react-hooks/exhaustive-deps': 'warn',
     'react/jsx-props-no-spreading': 'off',
-
-    '@typescript-eslint/no-use-before-define': ['error'],
+    '@typescript-eslint/no-use-before-define': ['warn'],
     'import/extensions': ['error', 'never'],
     'react/prop-types': 0,
     'no-shadow': 'off',
@@ -62,7 +61,6 @@ module.exports = {
   },
   settings: {
     'import/resolver': {
-      typescript: {},
       'babel-plugin-root-import': {
         rootPathPrefix: '~',
         rootPathSuffix: 'src',
