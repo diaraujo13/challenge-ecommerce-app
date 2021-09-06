@@ -13,7 +13,7 @@ const { reducer, actions } = createSlice({
     toggleLoading: (state, { payload }: PayloadAction<boolean>) => {
       state.loading = payload;
     },
-    addProduct(state, action: PayloadAction<number>) {
+    addProductToCart(state, action: PayloadAction<number>) {
       state.items.push(action.payload);
     },
   },
