@@ -1,9 +1,10 @@
 import * as React from 'react';
-import { FontAwesome } from '@expo/vector-icons';
+import { AntDesign, FontAwesome } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
+import { Icon, IconButton } from 'native-base';
 
 import {
   RootStackParamList,
@@ -11,6 +12,7 @@ import {
   RootTabScreenProps,
 } from '../types';
 import { CartButton } from './components';
+import Filter from './screens/Product/Filter';
 
 import { ProductDetails, ProductList } from '~/screens/Product';
 import { LoginScreen, RegisterScreen } from '~/screens/Auth';
@@ -40,6 +42,17 @@ const RootNavigator = () => (
         presentation: 'modal',
       }}
       component={ProductDetails}
+    />
+    <Stack.Screen
+      name="ProductFilter"
+      options={{
+        animation: 'slide_from_right',
+        headerShown: true,
+        headerTitle: '',
+        headerLeft: () => <IconButton icon={<AntDesign name="close" />} />,
+        headerRight: null,
+      }}
+      component={Filter}
     />
   </Stack.Navigator>
 );
