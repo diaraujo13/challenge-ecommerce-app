@@ -7,7 +7,11 @@ import { IProduct } from '~/screens/Product';
 const productsState = state => state.products;
 const cartState = state => state.cart;
 
-export const getCart = createSelector(cartState, ({ items }) => items);
+export const getCartItems = createSelector(
+  [cartState, productsState],
+  (_cart, _products) =>
+    _cart.items.map(el => _products.items.find(p => p.id === el)), // TODO: checar contra id em el
+);
 
 export const getTotalItemsFromCart = createSelector(
   cartState,
