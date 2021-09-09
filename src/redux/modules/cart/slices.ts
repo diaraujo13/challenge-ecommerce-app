@@ -1,6 +1,17 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-const initialState = {
+interface ICartItem {
+  id: number;
+  qty: number;
+}
+
+interface ICart {
+  items: Array<ICartItem>;
+  loading: boolean;
+  error: string;
+}
+
+const initialState: ICart = {
   items: [],
   loading: false,
   error: '',
@@ -13,8 +24,13 @@ const { reducer, actions } = createSlice({
     toggleLoading: (state, { payload }: PayloadAction<boolean>) => {
       state.loading = payload;
     },
-    addProductToCart(state, action: PayloadAction<number>) {
-      state.items.push(action.payload);
+    addProductToCart(state, action: PayloadAction<ICartItem>) {
+      const { id } = action.payload;
+
+      const existentIndex = state.items.findIndex(el => el.id === id);
+
+      if (existentIndex >= 0) state.items[existentIndex].qty += 1;
+      else state.items.push({ id, qty: 1 });
     },
   },
 });
