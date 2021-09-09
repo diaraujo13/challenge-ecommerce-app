@@ -13,6 +13,7 @@ import {
 } from '../types';
 import { CartButton } from './components';
 import Filter from './screens/Product/Filter';
+import { CartList } from './screens/Cart';
 
 import { ProductDetails, ProductList } from '~/screens/Product';
 import { LoginScreen, RegisterScreen } from '~/screens/Auth';
@@ -46,13 +47,19 @@ const RootNavigator = () => (
     <Stack.Screen
       name="ProductFilter"
       options={{
+        presentation: 'fullScreenModal',
         animation: 'slide_from_right',
-        headerShown: true,
-        headerTitle: '',
-        headerLeft: () => <IconButton icon={<AntDesign name="close" />} />,
-        headerRight: null,
       }}
       component={Filter}
+    />
+
+    <Stack.Screen
+      name="CartList"
+      options={{
+        presentation: 'modal',
+        animation: 'slide_from_right',
+      }}
+      component={CartList}
     />
   </Stack.Navigator>
 );
@@ -64,9 +71,11 @@ const Sidebar = () => (
       key="_ListProducts"
       name="Início"
       component={RootNavigator}
-      options={{
-        headerRight: () => <CartButton />,
-      }}
+      options={({ navigation }) => ({
+        headerRight: () => (
+          <CartButton onPress={() => navigation.navigate('CartList')} />
+        ),
+      })}
     />
   </Drawer.Navigator>
 );
