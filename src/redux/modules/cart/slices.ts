@@ -1,7 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+import { IProduct } from '~/screens/Product';
+
 interface ICartItem {
   id: number;
+  item: IProduct;
   qty: number;
 }
 
