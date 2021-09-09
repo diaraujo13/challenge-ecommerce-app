@@ -4,11 +4,10 @@ import { IProduct } from '~/screens/Product';
 
 interface ICartItem {
   id: number;
-  item: IProduct;
   qty: number;
 }
 
-interface ICart {
+export interface ICart {
   items: Array<ICartItem>;
   loading: boolean;
   error: string;
