@@ -11,10 +11,10 @@ import { RootState } from '~/redux/store';
 const CartButtonWrapper = styled(TouchableOpacity)`
   margin-right: 20px;
 `;
-const CartButton = () => {
+const CartButton = ({ onPress, ...props }) => {
   const totalItemsFromCart = useSelector<RootState>(getTotalItemsFromCart);
   return (
-    <CartButtonWrapper>
+    <CartButtonWrapper {...{ onPress }}>
       <AntDesign name="shoppingcart" size={24} />
       {totalItemsFromCart > 0 && (
         <Badge style={{ position: 'absolute', top: -2, right: -10 }}>
