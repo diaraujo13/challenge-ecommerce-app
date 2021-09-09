@@ -1,6 +1,8 @@
 import { createSelector } from '@reduxjs/toolkit';
 import { useSelector } from 'react-redux';
 
+import { ICart } from './slices';
+
 import { RootState } from '~/redux/store';
 import { IProduct } from '~/screens/Product';
 
@@ -18,5 +20,9 @@ export const getCartItems = createSelector(
 
 export const getTotalItemsFromCart = createSelector(
   cartState,
-  ({ items }: RootState) => items.length,
+  ({ items }: ICart) => items.reduce((acc, el) => el.qty + acc, 0),
+);
+
+export const getTotalAmountFromCart = createSelector(getCartItems, items =>
+  items.reduce((acc, el) => el.item.price * el.qty + acc, 0),
 );
