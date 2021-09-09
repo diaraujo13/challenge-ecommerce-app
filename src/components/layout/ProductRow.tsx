@@ -4,6 +4,7 @@ import styled from 'styled-components/native';
 import { Text, Box, FlatList, Heading } from 'native-base';
 
 import { moneyFormat } from '~/common/utils';
+import { Badge } from '~/components';
 
 export const RowContent = styled.View`
   flex-direction: row;
@@ -32,6 +33,18 @@ const ProductRow = ({ title, price, image, onPress, ...item }) => (
       </Box>
       <Box>
         <RowImage source={{ uri: image }} />
+        {item.qty && (
+          <Badge
+            colorScheme="danger"
+            style={{
+              position: 'absolute',
+              bottom: 0,
+              right: 0,
+            }}
+          >
+            {item.qty}
+          </Badge>
+        )}
       </Box>
     </RowContent>
   </TouchableOpacity>

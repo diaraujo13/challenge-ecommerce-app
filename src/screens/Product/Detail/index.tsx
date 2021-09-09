@@ -1,10 +1,10 @@
 import React, { Component, useEffect, useState, useCallback } from 'react';
 import { useRoute } from '@react-navigation/native';
-import { Text, View, Button, Heading, ScrollView, Badge } from 'native-base';
+import { Text, View, Button, Heading, ScrollView } from 'native-base';
 import { Image, StyleSheet } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Container, ModalHeader } from '~/components';
+import { Container, Badge, ModalHeader } from '~/components';
 import { getProductById } from '~/redux/selectors';
 import { cartActions } from '~/redux/actions';
 import { moneyFormat } from '~/common/utils';
@@ -31,11 +31,7 @@ const ProductDetail = () => {
         source={{ uri: product?.image }}
       />
       <View alignItems="center" mt="5">
-        <Badge colorScheme="secondary" padding={2}>
-          <Text bold color="white">
-            {moneyFormat(product.price)}
-          </Text>
-        </Badge>
+        <Badge>{moneyFormat(product.price)}</Badge>
       </View>
       <Text bold mx={2} mt={5}>
         {product?.title}

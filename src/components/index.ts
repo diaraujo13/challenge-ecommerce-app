@@ -6,3 +6,4 @@ export { default as ModalHeader } from './layout/ModalHeader';
 
 export { default as CartButton } from './widgets/CartButton';
 export { default as CloseButton } from './widgets/CloseButton';
+export { default as Badge } from './widgets/Badge';
