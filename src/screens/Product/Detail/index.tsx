@@ -1,12 +1,13 @@
 import React, { Component, useEffect, useState, useCallback } from 'react';
 import { useRoute } from '@react-navigation/native';
-import { Text, View, Button, Heading, ScrollView } from 'native-base';
+import { Text, View, Button, Heading, ScrollView, Badge } from 'native-base';
 import { Image, StyleSheet } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Container, ModalHeader } from '~/components';
 import { getProductById } from '~/redux/selectors';
 import { cartActions } from '~/redux/actions';
+import { moneyFormat } from '~/common/utils';
 
 interface IProductDetailedParams {
   productId: number;
@@ -24,16 +25,26 @@ const ProductDetail = () => {
 
   return (
     <View style={{ flex: 1, backgroundColor: '#FFF', paddingBottom: 30 }}>
-      <ModalHeader>{product?.title}</ModalHeader>
+      <ModalHeader>Detalhes</ModalHeader>
       <Image
         style={{ width: '100%', height: 230, resizeMode: 'contain' }}
         source={{ uri: product?.image }}
       />
+      <View alignItems="center" mt="5">
+        <Badge colorScheme="secondary" padding={2}>
+          <Text bold color="white">
+            {moneyFormat(product.price)}
+          </Text>
+        </Badge>
+      </View>
+      <Text bold mx={2} mt={5}>
+        {product?.title}
+      </Text>
       <ScrollView>
         <Text
           style={{
             padding: 10,
-            marginVertical: 40,
+            marginVertical: 10,
             fontSize: 16,
             color: '#777',
           }}
