@@ -1,10 +1,10 @@
 import React, { Component, useEffect, useState, useCallback } from 'react';
 import { useRoute } from '@react-navigation/native';
-import { Button, Heading } from 'native-base';
-import { View, Image, Text, StyleSheet } from 'react-native';
+import { Text, View, Button, Heading, ScrollView } from 'native-base';
+import { Image, StyleSheet } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Container } from '~/components';
+import { Container, ModalHeader } from '~/components';
 import { getProductById } from '~/redux/selectors';
 import { cartActions } from '~/redux/actions';
 
@@ -15,27 +15,35 @@ const ProductDetail = () => {
   const dispatch = useDispatch();
   const product = useSelector(getProductById);
   const addToCart = useCallback(() => {
-    dispatch(cartActions.addProductToCart(product.id));
+    dispatch(
+      cartActions.addProductToCart({
+        id: product.id,
+      }),
+    );
   }, []);
 
   return (
-    <View style={{ flex: 1, backgroundColor: '#FFF' }}>
-      <View style={{ padding: 10 }}>
-        <Heading>{product.title}</Heading>
+    <View style={{ flex: 1, backgroundColor: '#FFF', paddingBottom: 30 }}>
+      <ModalHeader>{product?.title}</ModalHeader>
+      <Image
+        style={{ width: '100%', height: 230, resizeMode: 'contain' }}
+        source={{ uri: product?.image }}
+      />
+      <ScrollView>
+        <Text
+          style={{
+            padding: 10,
+            marginVertical: 40,
+            fontSize: 16,
+            color: '#777',
+          }}
+        >
+          {product?.description}
+        </Text>
+      </ScrollView>
+      <View>
+        <Button onPress={addToCart}>ADICIONAR AO CARRINHO</Button>
       </View>
-      <View style={{ backgroundColor: 'white' }}>
-        <Image
-          style={{ width: '100%', height: 330, resizeMode: 'contain' }}
-          source={{ uri: product?.image }}
-        />
-      </View>
-      <Text
-        style={{ padding: 10, marginVertical: 40, fontSize: 16, color: '#777' }}
-      >
-        {product.description}
-      </Text>
-
-      <Button onPress={addToCart}>ADICIONAR AO CARRINHO</Button>
     </View>
   );
 };

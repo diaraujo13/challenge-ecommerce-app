@@ -1,11 +1,20 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native';
-import { Text, Box, FlatList, Heading } from 'native-base';
+import {
+  Text,
+  Box,
+  FlatList,
+  Heading,
+  View,
+  Button,
+  IconButton,
+} from 'native-base';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
+import { AntDesign } from '@expo/vector-icons';
 
 import * as selectors from '~/redux/selectors';
-import { ProductRow } from '~/components';
+import { ProductRow, SearchBar } from '~/components';
 import { productActions } from '~/redux/actions';
 
 const ProductList = props => {
@@ -16,6 +25,22 @@ const ProductList = props => {
 
   return (
     <>
+      <View style={{ flexDirection: 'row' }}>
+        <View
+          style={{
+            flex: 1,
+            flexGrow: 1,
+          }}
+        >
+          <SearchBar lightTheme />
+        </View>
+        <View style={{ width: '15%' }}>
+          <IconButton
+            onPress={() => navigation.navigate('ProductFilter')}
+            icon={<AntDesign size={24} name="filter" />}
+          />
+        </View>
+      </View>
       <FlatList
         data={products}
         renderItem={({ item }) => (
@@ -28,7 +53,7 @@ const ProductList = props => {
             {...item}
           />
         )}
-        keyExtractor={item => item.id}
+        keyExtractor={item => item.id.toString()}
       />
     </>
   );
