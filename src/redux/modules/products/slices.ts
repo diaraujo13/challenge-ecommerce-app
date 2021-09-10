@@ -1,13 +1,22 @@
 /* eslint-disable no-param-reassign */
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { IProduct } from '~/screens/Product';
 import productsMock from '~/mock/products';
 
-interface IProductFilter {
+export interface IProduct {
+  id: number;
+  title: string;
+  price: number;
+  description: string;
+  category: string;
+  image: string;
+  rating: Record<string, any>;
+}
+
+export interface IProductFilter {
   orderBy: string;
 }
-interface IProductState {
+export interface IProductState {
   items: IProduct[];
   selected: number;
   filter: IProductFilter;
@@ -18,6 +27,7 @@ const initialState: IProductState = {
   selected: 0,
   filter: {
     orderBy: 'default',
+    sortBy: 1,
   },
 };
 
