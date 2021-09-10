@@ -77,6 +77,17 @@ const Sidebar = () => (
         ),
       })}
     />
+
+    <Drawer.Screen
+      key="_Pedidos"
+      name="Pedidos"
+      component={RootNavigator}
+      options={({ navigation }) => ({
+        headerRight: () => (
+          <CartButton onPress={() => navigation.navigate('CartList')} />
+        ),
+      })}
+    />
   </Drawer.Navigator>
 );
 
