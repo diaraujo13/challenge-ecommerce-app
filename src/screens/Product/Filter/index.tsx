@@ -9,12 +9,13 @@ import {
   Button,
   Select,
   Slider,
+  Radio,
 } from 'native-base';
 import { AntDesign, MaterialCommunityIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/core';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { CloseButton, Container } from '~/components';
+import { CloseButton, Container, ModalHeader } from '~/components';
 import { RootState } from '~/redux/store';
 import { productActions } from '~/redux/actions';
 
@@ -22,38 +23,43 @@ const Filter = () => {
   const navigation = useNavigation();
 
   const { orderBy } = useSelector(state => state.products.filter);
-  const [orderFilter, setOrderFilter] = React.useState(orderBy);
 
   const dispatch = useDispatch();
 
   return (
     <>
       <Container>
-        <CloseButton />
-        <View style={{ flex: 1 }}>
-          <Heading mt="10">Filtros</Heading>
-
+        <ModalHeader>Filtros</ModalHeader>
+        <View flex={1} px={4}>
           <Text bold mt="10" mb="5">
             Ordernar por
           </Text>
-          <Select
-            selectedValue={orderFilter}
-            onValueChange={value => {
-              console.log(value);
+          <Radio.Group
+            name="orderByRadio"
+            value={orderBy}
+            onChange={nextValue => {
+              dispatch(productActions.setFilter({ orderBy: nextValue }));
             }}
           >
-            <Select.Item label="Padrão" value="default" />
-            <Select.Item label="Preço" value="preco" />
-            <Select.Item label="Nome" value="nome" />
-          </Select>
+            <Radio ml={3} mb={4} value="default">
+              Padrão
+            </Radio>
+            <Radio ml={3} mb={4} value="precoUp">
+              Menor preço para maior
+            </Radio>
+            <Radio ml={3} mb={4} value="precoDown">
+              Maior preço para menor
+            </Radio>
+            <Radio ml={3} mb={4} value="nameUp">
+              Nome a-Z
+            </Radio>
+            <Radio ml={3} value="nameDown">
+              Nome Z-a
+            </Radio>
+          </Radio.Group>
         </View>
         <Button
           onPress={() => {
-            dispatch(
-              productActions.setFilter({
-                orderBy: orderFilter,
-              }),
-            );
             navigation.goBack();
           }}
           colorScheme="secondary"
