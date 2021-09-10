@@ -4,7 +4,7 @@ import { Badge as NBadge, Text } from 'native-base';
 
 const Badge = ({ children, ...props }) => {
   return (
-    <NBadge colorScheme="secondary" padding={1} {...props}>
+    <NBadge colorScheme="secondary" {...props}>
       <Text bold textAlign="center" color="white">
         {children}
       </Text>

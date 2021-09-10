@@ -3,26 +3,11 @@ import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import styled from 'styled-components/native';
 import { Text, Box, FlatList, Heading } from 'native-base';
 
+import Badge from '../widgets/Badge';
+import RowContent from './RowContent';
+import RowImage from './RowImage';
+
 import { moneyFormat } from '~/common/utils';
-import { Badge } from '~/components';
-
-export const RowContent = styled.View`
-  flex-direction: row;
-  width: 100%;
-  height: 130px;
-  padding: 15px 10px;
-  margin: 5px 0px;
-  background: #eaeaea;
-  border-radius: 10px;
-  box-shadow: 0.4px 0.5px 0.2px #ddd;
-`;
-
-export const RowImage = styled.Image`
-  width: 100px;
-  height: 100px;
-  border-radius: 10px;
-  resize-mode: cover;
-`;
 
 const ProductRow = ({ title, price, image, onPress, ...item }) => (
   <TouchableOpacity {...{ onPress }}>
@@ -33,24 +18,17 @@ const ProductRow = ({ title, price, image, onPress, ...item }) => (
       </Box>
       <Box>
         <RowImage source={{ uri: image }} />
-        {item.qty && (
-          <Badge
-            colorScheme="danger"
-            style={{
-              position: 'absolute',
-              bottom: 0,
-              right: 0,
-            }}
-          >
-            {item.qty}
-          </Badge>
-        )}
       </Box>
     </RowContent>
   </TouchableOpacity>
 );
 
 const styles = StyleSheet.create({
+  badge: {
+    position: 'absolute',
+    bottom: 0,
+    right: 0,
+  },
   container: {},
 });
 
