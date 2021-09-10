@@ -14,6 +14,7 @@ import {
 import { CartButton } from './components';
 import Filter from './screens/Product/Filter';
 import { CartList } from './screens/Cart';
+import { OrderList } from './screens/Order';
 
 import { ProductDetails, ProductList } from '~/screens/Product';
 import { LoginScreen, RegisterScreen } from '~/screens/Auth';
@@ -64,6 +65,16 @@ const RootNavigator = () => (
   </Stack.Navigator>
 );
 
+const OrderNavigator = () => (
+  <Stack.Navigator
+    screenOptions={{
+      headerShown: false,
+    }}
+  >
+    <Stack.Screen name="OrderList" component={OrderList} />
+  </Stack.Navigator>
+);
+
 const Drawer = createDrawerNavigator();
 const Sidebar = () => (
   <Drawer.Navigator>
@@ -71,17 +82,12 @@ const Sidebar = () => (
       key="_ListProducts"
       name="Início"
       component={RootNavigator}
-      options={({ navigation }) => ({
-        headerRight: () => (
-          <CartButton onPress={() => navigation.navigate('CartList')} />
-        ),
-      })}
     />
 
     <Drawer.Screen
       key="_Pedidos"
       name="Pedidos"
-      component={RootNavigator}
+      component={OrderNavigator}
       options={({ navigation }) => ({
         headerRight: () => (
           <CartButton onPress={() => navigation.navigate('CartList')} />
