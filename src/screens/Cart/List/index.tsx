@@ -5,7 +5,12 @@ import { useSelector } from 'react-redux';
 
 import { CartDetailsSection, CartDetailsSectionRow } from '../styles';
 
-import { CloseButton, Container, ModalHeader, ProductRow } from '~/components';
+import {
+  CloseButton,
+  Container,
+  ModalHeader,
+  CartProductRow,
+} from '~/components';
 import {
   getCartItems,
   getTotalItemsFromCart,
@@ -24,9 +29,10 @@ const CartList = () => {
       <FlatList
         data={items}
         flex="1"
-        renderItem={({ item }) => <ProductRow {...item.item} />}
+        renderItem={({ item }) => (
+          <CartProductRow {...item.item} qty={item.qty} />
+        )}
       />
-
       <CartDetailsSection>
         <CartDetailsSectionRow>
           <Text bold>Quantidade itens</Text>
