@@ -34,7 +34,7 @@ const OrderDetails = () => {
       </View>
       <FlatList
         data={order.products}
-        flex="1"
+        style={{ flex: 1 }}
         renderItem={({ item, index }) => (
           <View mb="2" flexDirection="row">
             <View alignItems="center" justifyContent="center">

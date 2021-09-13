@@ -62,11 +62,10 @@ const Register = () => {
   return (
     <Container>
       <BackButton onPress={() => navigation.goBack()} />
+      <Heading mb="10" textAlign="center">
+        Registre-se
+      </Heading>
       <Main>
-        <Header>
-          <Heading>Registre-se</Heading>
-          <Text>Seja bem vindo</Text>
-        </Header>
         <FormInput
           placeholder="Nome completo"
           control={control}

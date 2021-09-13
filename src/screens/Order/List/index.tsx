@@ -22,7 +22,7 @@ const OrderProductRow = ({ item, index }) => {
       }
     >
       <View p="3" m="3" flexDirection="row" borderRadius="7px" bg="gray.50">
-        <View flex="1">
+        <View style={{ flex: 1 }}>
           <Text bold>Pedido #{index + 1}</Text>
           <Text fontSize="xs">
             {formatDistance(new Date(item.createdAt), new Date(), {

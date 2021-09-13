@@ -49,7 +49,6 @@ const Login = () => {
           await dispatch(authActions.signin({ token: result.data.token }));
       } catch {
         alert('Ocorreu um erro ao processar sua requisição');
-      } finally {
         toggleLoading(false);
       }
     }
@@ -60,13 +59,11 @@ const Login = () => {
   if (loading) return <Loader />;
 
   return (
-    <Container style={styles.centered_container}>
-      <Header>
-        <Logo source={require('~/assets/images/favicon.png')} />
-        <Heading>My Ecommerce</Heading>
-        <Text>Entre para continuar</Text>
-      </Header>
+    <Container>
       <Main>
+        <Header>
+          <Heading> Ecommerce Now</Heading>
+        </Header>
         <FormInput
           placeholder="E-mail"
           name="email"
@@ -85,16 +82,15 @@ const Login = () => {
           InputLeftElement={<BaseIcon name="key" />}
           rules={{ required: true }}
         />
-        {/* <ForgotPasswordLink> Esqueceu a senha? </ForgotPasswordLink> */}
+        <Section>
+          <Button onPress={handleSubmit(onSubmit)}>ENTRAR</Button>
+        </Section>
+        <Section>
+          <RegisterButton onPress={() => navigation.navigate('Register')}>
+            Não possui conta? Cadastre-se
+          </RegisterButton>
+        </Section>
       </Main>
-      <Section>
-        <Button onPress={handleSubmit(onSubmit)}>ENTRAR</Button>
-      </Section>
-      <Section>
-        <RegisterButton onPress={() => navigation.navigate('Register')}>
-          Não possui conta? Cadastre-se
-        </RegisterButton>
-      </Section>
 
       <Footer>
         <Text fontSize="xs">2021 - All rights reserved</Text>

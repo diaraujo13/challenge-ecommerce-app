@@ -48,7 +48,7 @@ const CartList = props => {
       <ModalHeader>Carrinho</ModalHeader>
       <FlatList
         data={items}
-        flex="1"
+        style={{ flex: 1 }}
         renderItem={({ item }) => (
           <CartProductRow {...item.item} qty={item.qty} />
         )}
