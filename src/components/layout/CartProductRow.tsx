@@ -33,8 +33,8 @@ const CartProductRow = ({ id, title, qty, price, image, onPress, ...item }) => {
 
   return (
     <RowContent>
-      <View flex={1}>
-        <Box flex={1} flexDir="column">
+      <View style={{ flex: 1 }}>
+        <Box style={{ flex: 1 }} flexDir="column">
           <Heading size="sm">{title}</Heading>
           <Text size="xs">{moneyFormat(price)}</Text>
         </Box>

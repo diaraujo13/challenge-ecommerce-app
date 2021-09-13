@@ -8,7 +8,7 @@ import CloseButton from '../widgets/CloseButton';
 const ModalHeader = ({ children, ...props }) => {
   return (
     <View py="5" px="5" flexDirection="row">
-      <View flex="1" alignItems="flex-start">
+      <View style={{ flex: 1 }} alignItems="flex-start">
         <Text bold mb="10" fontSize="2xl">
           {children}
         </Text>

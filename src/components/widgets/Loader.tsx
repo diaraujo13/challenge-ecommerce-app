@@ -4,7 +4,7 @@ import { ActivityIndicator } from 'react-native';
 
 const Loader = () => (
   <View
-    flex="1"
+    style={{ flex: 1 }}
     backgroundColor="primary.500"
     justifyContent="center"
     alignItems="center"

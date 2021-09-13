@@ -14,7 +14,7 @@ export const Logo = styled.Image`
 `;
 
 export const Main = styled.View`
-  flex: 2;
+  flex: 1;
   width: 100%;
 `;
 
