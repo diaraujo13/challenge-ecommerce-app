@@ -92,7 +92,7 @@ const Sidebar = () => (
         fontSize: 15,
       },
     }}
-    drawerContent={DrawerContent}
+    drawerContent={props => <DrawerContent {...props} />}
   >
     <Drawer.Screen
       key="_ListProducts"
