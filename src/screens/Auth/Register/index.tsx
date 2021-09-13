@@ -1,11 +1,12 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { StyleSheet } from 'react-native';
 import { Button, Heading, Input, Icon, Text } from 'native-base';
 import { AntDesign } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
 
-import { Container, FormInput } from '~/components';
+import { Container, FormInput, Loader } from '~/components';
 import {
   BackButton,
   Footer,
@@ -13,21 +14,50 @@ import {
   Main,
   RegisterButton,
 } from '~/screens/Auth/styles';
+import axiosInstance from '~/common/api';
+import { authActions } from '~/redux/actions';
 
 const Register = () => {
+  const navigation = useNavigation();
+
+  const [loading, toggleLoading] = useState(false);
+
+  const dispatch = useDispatch();
+
   const {
     control,
     handleSubmit,
     formState: { errors },
   } = useForm({
-    defaultValues: {},
+    defaultValues: {
+      email: 'eve.holt@reqres.in',
+      password: 'pistol',
+      password_confirmation: 'pistol',
+    },
   });
 
-  const navigation = useNavigation();
-
   const onSubmit = useCallback(values => {
-    console.log(values);
+    async function register() {
+      toggleLoading(true);
+      try {
+        const result = await axiosInstance.post<{ token: string; id: string }>(
+          '/register',
+          values,
+        );
+
+        if (result.status === 200)
+          await dispatch(authActions.signin({ token: result.data.token }));
+      } catch {
+        alert('Ocorreu um erro ao processar sua requisição');
+      } finally {
+        toggleLoading(false);
+      }
+    }
+
+    return register();
   }, []);
+
+  if (loading) return <Loader />;
 
   return (
     <Container>

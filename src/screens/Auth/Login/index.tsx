@@ -1,33 +1,29 @@
-import React, { Component, useCallback } from 'react';
-import {
-  ArrowUpIcon,
-  Center,
-  Button,
-  Heading,
-  Input,
-  Icon,
-  Text,
-  MoonIcon,
-} from 'native-base';
-import { View, StyleSheet, Platform } from 'react-native';
-import { AntDesign } from '@expo/vector-icons';
+import React, { useCallback, useState } from 'react';
+import { Button, Heading, Text, View } from 'native-base';
+import { StyleSheet, ActivityIndicator } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
 
-import { Container, FormInput } from '~/components';
+import { Container, FormInput, Loader } from '~/components';
 import {
   BaseIcon,
   Footer,
-  ForgotPasswordLink,
   Header,
   Logo,
   Main,
   RegisterButton,
   Section,
 } from '~/screens/Auth/styles';
+import axiosInstance from '~/common/api';
+import { authActions } from '~/redux/actions';
 
 const Login = () => {
   const navigation = useNavigation();
+
+  const [loading, toggleLoading] = useState(false);
+
+  const dispatch = useDispatch();
 
   const {
     control,
@@ -41,8 +37,27 @@ const Login = () => {
   });
 
   const onSubmit = useCallback(values => {
-    console.log(values);
+    async function login() {
+      toggleLoading(true);
+      try {
+        const result = await axiosInstance.post<{ token: string }>(
+          '/login',
+          values,
+        );
+
+        if (result.status === 200)
+          await dispatch(authActions.signin({ token: result.data.token }));
+      } catch {
+        alert('Ocorreu um erro ao processar sua requisição');
+      } finally {
+        toggleLoading(false);
+      }
+    }
+
+    return login();
   }, []);
+
+  if (loading) return <Loader />;
 
   return (
     <Container style={styles.centered_container}>
