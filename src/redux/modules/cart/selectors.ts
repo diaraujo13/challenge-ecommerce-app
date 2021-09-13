@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { ICart } from './slices';
 
 import { RootState } from '~/redux/store';
-import { IProduct } from '~/screens/Product';
+import { IProduct } from '~/redux/modules/products/slices';
 
 const productsState = state => state.products;
 const cartState = state => state.cart;

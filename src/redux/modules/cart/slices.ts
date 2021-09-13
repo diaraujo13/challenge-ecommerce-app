@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { IProduct } from '~/screens/Product';
+import { IProduct } from '~/redux/modules/products/slices';
 
 interface ICartItem {
   id: number;
@@ -41,6 +41,9 @@ const { reducer, actions } = createSlice({
 
       items[n].qty += newQty;
       if (items[n].qty === 0) state.items.splice(n, 1);
+    },
+    clearCart(state) {
+      state.items = [];
     },
   },
 });

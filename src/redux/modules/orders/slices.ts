@@ -3,29 +3,30 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IProduct } from '~/redux/modules/products/slices';
 
 export interface IOrder {
-  items: Array<IProduct>;
-  total: number;
+  products: Array<IProduct>;
+  totalItems: number;
   amount: number;
   createdAt: string;
-  status: string;
+  orderId: number;
 }
 
-const initialState: IOrder = {
+export interface IRootOrder {
+  items: Array<IOrder>;
+}
+
+const initialState: IRootOrder = {
   items: [],
-  total: 0,
-  amount: 0,
-  createdAt: '',
-  status: '',
 };
 
-const { reducer, actions } = createSlice({
+const { actions, reducer } = createSlice({
   name: 'orders',
   initialState,
   reducers: {
     addOrder: (state, action: PayloadAction<IOrder>) => {
+      console.log(action.payload);
       state.items.push(action.payload);
     },
   },
 });
 
-export default { reducer, actions };
+export { actions, reducer };

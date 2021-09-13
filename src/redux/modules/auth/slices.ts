@@ -9,7 +9,7 @@ const { actions, reducer } = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    signin: (state, action) => {
+    signin: (state, action: PayloadAction<{ token: string }>) => {
       const { token } = action.payload;
       state.token = token;
 
