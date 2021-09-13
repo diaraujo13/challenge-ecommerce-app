@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useCallback } from 'react';
 import {
   ArrowUpIcon,
   Center,
@@ -12,8 +12,9 @@ import {
 import { View, StyleSheet, Platform } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
+import { useForm } from 'react-hook-form';
 
-import { Container } from '~/components';
+import { Container, FormInput } from '~/components';
 import {
   BaseIcon,
   Footer,
@@ -28,6 +29,21 @@ import {
 const Login = () => {
   const navigation = useNavigation();
 
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      email: 'eve.holt@reqres.in',
+      password: 'cityslicka',
+    },
+  });
+
+  const onSubmit = useCallback(values => {
+    console.log(values);
+  }, []);
+
   return (
     <Container style={styles.centered_container}>
       <Header>
@@ -36,19 +52,32 @@ const Login = () => {
         <Text>Entre para continuar</Text>
       </Header>
       <Main>
-        <Input
+        <FormInput
           placeholder="E-mail"
+          name="email"
+          control={control}
           InputLeftElement={<BaseIcon name="user" />}
+          rules={{
+            required: true,
+          }}
         />
-        <Input placeholder="Senha" InputLeftElement={<BaseIcon name="key" />} />
-        <ForgotPasswordLink> Esqueceu a senha? </ForgotPasswordLink>
+
+        <FormInput
+          name="password"
+          placeholder="Senha"
+          secureTextEntry
+          control={control}
+          InputLeftElement={<BaseIcon name="key" />}
+          rules={{ required: true }}
+        />
+        {/* <ForgotPasswordLink> Esqueceu a senha? </ForgotPasswordLink> */}
       </Main>
       <Section>
-        <Button>ENTRAR</Button>
+        <Button onPress={handleSubmit(onSubmit)}>ENTRAR</Button>
       </Section>
       <Section>
         <RegisterButton onPress={() => navigation.navigate('Register')}>
-          <Text>Não possui conta? Cadastre-se</Text>
+          Não possui conta? Cadastre-se
         </RegisterButton>
       </Section>
 

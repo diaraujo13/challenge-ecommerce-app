@@ -5,24 +5,29 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { Icon, IconButton } from 'native-base';
+import { useSelector } from 'react-redux';
 
 import {
   RootStackParamList,
   RootTabParamList,
   RootTabScreenProps,
 } from '../types';
-import { CartButton } from './components';
-import Filter from './screens/Product/Filter';
-import { CartList } from './screens/Cart';
-import { OrderList } from './screens/Order';
 
-import { ProductDetails, ProductList } from '~/screens/Product';
+import { OrderList, OrderDetails } from '~/screens/Order';
+import { CartList } from '~/screens/Cart';
+import { CartButton, DrawerContent } from '~/components';
+import { ProductDetails, ProductFilter, ProductList } from '~/screens/Product';
 import { LoginScreen, RegisterScreen } from '~/screens/Auth';
 
 const Stack = createNativeStackNavigator();
 
 const AuthNavigator = () => (
   <Stack.Navigator>
+    <Stack.Screen
+      name="Login"
+      component={LoginScreen}
+      options={{ headerShown: false }}
+    />
     <Stack.Screen
       name="Register"
       component={RegisterScreen}
@@ -51,9 +56,8 @@ const RootNavigator = () => (
         presentation: 'fullScreenModal',
         animation: 'slide_from_right',
       }}
-      component={Filter}
+      component={ProductFilter}
     />
-
     <Stack.Screen
       name="CartList"
       options={{
@@ -72,35 +76,45 @@ const OrderNavigator = () => (
     }}
   >
     <Stack.Screen name="OrderList" component={OrderList} />
+    <Stack.Screen
+      key="OrderDetail"
+      name="OrderDetail"
+      component={OrderDetails}
+    />
   </Stack.Navigator>
 );
 
 const Drawer = createDrawerNavigator();
 const Sidebar = () => (
-  <Drawer.Navigator>
+  <Drawer.Navigator
+    screenOptions={{
+      drawerLabelStyle: {
+        fontSize: 15,
+      },
+    }}
+    drawerContent={DrawerContent}
+  >
     <Drawer.Screen
       key="_ListProducts"
       name="Início"
       component={RootNavigator}
-    />
-
-    <Drawer.Screen
-      key="_Pedidos"
-      name="Pedidos"
-      component={OrderNavigator}
       options={({ navigation }) => ({
         headerRight: () => (
           <CartButton onPress={() => navigation.navigate('CartList')} />
         ),
       })}
     />
+
+    <Drawer.Screen key="_Pedidos" name="Pedidos" component={OrderNavigator} />
   </Drawer.Navigator>
 );
 
 export default function Navigation() {
+  const userToken = useSelector(state => state.auth.token);
+
   return (
     <NavigationContainer>
-      {false ? <AuthNavigator /> : <Sidebar />}
+      {!userToken ? <AuthNavigator /> : <Sidebar />}
     </NavigationContainer>
   );
 }
