@@ -10,3 +10,4 @@ export { default as DrawerContent } from './layout/DrawerContent';
 export { default as CartButton } from './widgets/CartButton';
 export { default as CloseButton } from './widgets/CloseButton';
 export { default as Badge } from './widgets/Badge';
+export { default as Loader } from './widgets/Loader';

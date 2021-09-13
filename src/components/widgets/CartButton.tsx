@@ -9,7 +9,8 @@ import { getTotalItemsFromCart } from '~/redux/modules/cart/selectors';
 import { RootState } from '~/redux/store';
 
 const CartButtonWrapper = styled(TouchableOpacity)`
-  margin-right: 20px;
+  padding-right: 20px;
+  padding-left: 20px;
 `;
 const CartButton = ({ onPress, ...props }) => {
   const totalItemsFromCart = useSelector<RootState>(getTotalItemsFromCart);
@@ -17,7 +18,7 @@ const CartButton = ({ onPress, ...props }) => {
     <CartButtonWrapper {...{ onPress }}>
       <AntDesign name="shoppingcart" size={24} />
       {totalItemsFromCart > 0 && (
-        <Badge style={{ position: 'absolute', top: -2, right: -10 }}>
+        <Badge style={{ position: 'absolute', bottom: -2, right: 10 }}>
           {String(totalItemsFromCart)}
         </Badge>
       )}

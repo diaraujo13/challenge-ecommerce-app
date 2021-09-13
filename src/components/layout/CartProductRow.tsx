@@ -49,10 +49,12 @@ const CartProductRow = ({ id, title, qty, price, image, onPress, ...item }) => {
               height="30px"
               bg={gray['300']}
               alignItems="center"
-              borderRadius="7"
+              borderRadius="30px"
               justifyContent="center"
             >
-              <Text bold>-</Text>
+              <Text bold fontSize="sm">
+                -
+              </Text>
             </View>
           </TouchableOpacity>
           <Text bold width="30px" textAlign="center">
@@ -66,12 +68,14 @@ const CartProductRow = ({ id, title, qty, price, image, onPress, ...item }) => {
             <View
               width="30px"
               height="30px"
-              bg={secondary['400']}
+              bg={gray['300']}
               alignItems="center"
-              borderRadius="7"
+              borderRadius="30px"
               justifyContent="center"
             >
-              <Text color="secondary">+</Text>
+              <Text fontSize="sm" color="secondary">
+                +
+              </Text>
             </View>
           </TouchableOpacity>
         </ButtonGroup>
